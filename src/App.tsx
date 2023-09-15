@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-import regionsJson from "./regions.json";
+import { options } from "./App.spec";
+
 import "./style.css";
+import Dropdown from "./components/Dropdown";
 
 const App: FC = () => {
-  console.log(regionsJson);
-  return <div></div>;
+  return <Dropdown options={options} />;
 };
 
 export default App;
