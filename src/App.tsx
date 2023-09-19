@@ -1,12 +1,19 @@
 import { FC } from "react";
 
-import { options } from "./App.spec";
-
 import "./style.css";
-import Dropdown from "./components/Dropdown";
+import regionsJson from "./regions.json";
+
+import RegionDropdown from "./components/RegionDropdown";
+import { solution } from "./solution";
+
+const data = solution(regionsJson.regions);
 
 const App: FC = () => {
-  return <Dropdown options={options} />;
+  return (
+    <div style={{ display: "flex", gap: 4 }}>
+      <RegionDropdown regions={data} onChange={console.log} />
+    </div>
+  );
 };
 
 export default App;
