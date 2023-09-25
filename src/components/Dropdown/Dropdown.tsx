@@ -8,8 +8,8 @@ const { Container, DropdownInput, DropdownOptions, Text } =
 
 const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [isOptionVisible, setIsOptionVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState<DropdownOption>();
-  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     const handleClose = (e: MouseEvent) => {
@@ -27,9 +27,9 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
           }
         })
       ) {
-        setIsSelected(true);
+        setIsOptionVisible(true);
       } else {
-        setIsSelected(false);
+        setIsOptionVisible(false);
       }
     };
     window.addEventListener("click", handleClose);
@@ -40,13 +40,13 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
   }, []);
 
   const handleInputClick = () => {
-    setIsSelected(true);
+    setIsOptionVisible(true);
   };
 
   const handleOptionClick = (option: DropdownOption) => {
     setSelectedOption(option);
 
-    setIsSelected(false);
+    setIsOptionVisible(false);
 
     onChange(option);
   };
@@ -62,7 +62,7 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
           {selectedOption?.title || options[0].title}
         </Text>
       </DropdownInput>
-      {isSelected && (
+      {isOptionVisible && (
         <DropdownOptions data-testid="dropdown-options">
           {options.map((option, index) => {
             return (
