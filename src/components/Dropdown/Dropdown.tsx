@@ -58,7 +58,9 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
         data-testid="dropdown-input"
         onClick={handleInputClick}
       >
-        <Text>{selectedOption?.title || options[0].title}</Text>
+        <Text data-testid="dropdown-text">
+          {selectedOption?.title || options[0].title}
+        </Text>
       </DropdownInput>
       {isSelected && (
         <DropdownOptions data-testid="dropdown-options">
@@ -69,7 +71,7 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
                 key={option.value}
                 onClick={() => handleOptionClick(option)}
               >
-                <Text>{option.title}</Text>
+                <Text data-testid="dropdown-text">{option.title}</Text>
               </li>
             );
           })}

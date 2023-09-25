@@ -6,8 +6,8 @@ import userEvent from "@testing-library/user-event";
 
 import App from "./App";
 
-describe("Dropdown Component", () => {
-  it("UX Test - test id로 렌더가 잘 되는지", async () => {
+describe("Dropdown Component - UX Test", () => {
+  it("test id로 렌더가 잘 되는지", async () => {
     render(<App />);
 
     const dropdown = await screen.findByTestId("dropdown");
@@ -17,7 +17,7 @@ describe("Dropdown Component", () => {
     expect(dropdownInput).toBeInTheDocument();
   });
 
-  it("UX Test - 클릭 전 옵션 창이 없는지", async () => {
+  it("클릭 전 옵션 창이 없는지", async () => {
     render(<App />);
 
     await screen.findByTestId("dropdown");
@@ -25,7 +25,7 @@ describe("Dropdown Component", () => {
     expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
   });
 
-  it("UX Test - dropdown 클릭 시 옵션 창이 잘 나오는지", async () => {
+  it("dropdown 클릭 시 옵션 창이 잘 나오는지", async () => {
     render(<App />);
 
     const dropdownInput = await screen.findByTestId("dropdown-input");
@@ -37,7 +37,7 @@ describe("Dropdown Component", () => {
     expect(await screen.findByTestId("dropdown-options")).toBeInTheDocument();
   });
 
-  it("UX Test - 첫 번째 옵션 클릭 시 옵션 창이 잘 닫히는지", async () => {
+  it("첫 번째 옵션 클릭 시 옵션 창이 잘 닫히는지", async () => {
     render(<App />);
 
     const dropdownInput = await screen.findByTestId("dropdown-input");
@@ -50,7 +50,7 @@ describe("Dropdown Component", () => {
     expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
   });
 
-  it("UX Test - 옵션 클릭 시 옵션 값이 잘 입력 되었는지", async () => {
+  it("옵션 클릭 시 옵션 값이 잘 입력 되었는지", async () => {
     render(<App />);
 
     const dropdownInput = (await screen.findAllByTestId("dropdown-input"))[0];
@@ -65,5 +65,27 @@ describe("Dropdown Component", () => {
     expect(
       (await screen.findAllByTestId("dropdown-input"))[0]
     ).toHaveTextContent(title || "");
+  });
+});
+
+describe("Dropdown Component - UI Test", () => {
+  it("Dropdown 크기가 올바른지(width, height, padding)", async () => {
+    render(<App />);
+
+    const dropdownInput = (await screen.findAllByTestId("dropdown-input"))[0];
+
+    expect(dropdownInput).toHaveStyleRule("width", "119px");
+    expect(dropdownInput).toHaveStyleRule("height", "40px");
+    expect(dropdownInput).toHaveStyleRule("padding", "9.5px 18px 9.5px 16px");
+  });
+
+  it("Dropdown 폰트가 올바른지", async () => {
+    render(<App />);
+
+    const dropdownText = (await screen.findAllByTestId("dropdown-text"))[0];
+
+    expect(dropdownText).toHaveStyleRule("font-size", "14px");
+    expect(dropdownText).toHaveStyleRule("font-family", "Pretendard");
+    expect(dropdownText).toHaveStyleRule("font-weight", "500");
   });
 });
