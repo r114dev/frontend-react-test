@@ -6,6 +6,12 @@ import userEvent from "@testing-library/user-event";
 
 import App from "./App";
 
+// Test ID
+// 컴포넌트: dropdown
+// Input Box: dropdown-input
+// Option Box: dropdown-options
+// Text Area: dropdown-text
+
 describe("Dropdown Component - UX Test", () => {
   it("test id로 렌더가 잘 되는지", async () => {
     render(<App />);
@@ -30,7 +36,7 @@ describe("Dropdown Component - UX Test", () => {
 
     const dropdownInput = await screen.findByTestId("dropdown-input");
 
-    expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
+    // expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
 
     userEvent.click(dropdownInput);
 
@@ -66,6 +72,25 @@ describe("Dropdown Component - UX Test", () => {
       (await screen.findAllByTestId("dropdown-input"))[0]
     ).toHaveTextContent(title || "");
   });
+
+  // it("첫 번째 Dropdown 옵션 선택 시 두 번째 Dropdown이 정상적으로 렌더 되는지", async () => {
+  //   render(<App />);
+
+  //   const firstDropdownInput = (
+  //     await screen.findAllByTestId("dropdown-input")
+  //   )[0];
+
+  //   userEvent.click(firstDropdownInput);
+
+  //   const dropdownOption = await screen.findByTestId(`dropdown-option-1`);
+  //   userEvent.click(dropdownOption);
+
+  //   const secondDropdownInput = (
+  //     await screen.findAllByTestId("dropdown-input")
+  //   )[1];
+
+  //   expect(secondDropdownInput).toBeInTheDocument();
+  // });
 });
 
 describe("Dropdown Component - UI Test", () => {

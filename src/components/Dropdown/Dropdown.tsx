@@ -39,25 +39,15 @@ const Dropdown: FC<DropdownProps> = ({ options, onChange }) => {
     };
   }, []);
 
-  const handleInputClick = () => {
-    setIsOptionVisible(true);
-  };
-
   const handleOptionClick = (option: DropdownOption) => {
     setSelectedOption(option);
-
-    setIsOptionVisible(false);
 
     onChange(option);
   };
 
   return (
     <Container data-testid="dropdown">
-      <DropdownInput
-        ref={ref}
-        data-testid="dropdown-input"
-        onClick={handleInputClick}
-      >
+      <DropdownInput ref={ref} data-testid="dropdown-input">
         <Text data-testid="dropdown-text">
           {selectedOption?.title || options[0].title}
         </Text>
