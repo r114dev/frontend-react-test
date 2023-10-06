@@ -36,7 +36,7 @@ describe("Dropdown Component - UX Test", () => {
 
     const dropdownInput = await screen.findByTestId("dropdown-input");
 
-    // expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("dropdown-options")).not.toBeInTheDocument();
 
     userEvent.click(dropdownInput);
 
@@ -73,24 +73,24 @@ describe("Dropdown Component - UX Test", () => {
     ).toHaveTextContent(title || "");
   });
 
-  // it("첫 번째 Dropdown 옵션 선택 시 두 번째 Dropdown이 정상적으로 렌더 되는지", async () => {
-  //   render(<App />);
+  it("첫 번째 Dropdown 옵션 선택 시 두 번째 Dropdown이 정상적으로 렌더 되는지", async () => {
+    render(<App />);
 
-  //   const firstDropdownInput = (
-  //     await screen.findAllByTestId("dropdown-input")
-  //   )[0];
+    const firstDropdownInput = (
+      await screen.findAllByTestId("dropdown-input")
+    )[0];
 
-  //   userEvent.click(firstDropdownInput);
+    userEvent.click(firstDropdownInput);
 
-  //   const dropdownOption = await screen.findByTestId(`dropdown-option-1`);
-  //   userEvent.click(dropdownOption);
+    const dropdownOption = await screen.findByTestId(`dropdown-option-1`);
+    userEvent.click(dropdownOption);
 
-  //   const secondDropdownInput = (
-  //     await screen.findAllByTestId("dropdown-input")
-  //   )[1];
+    const secondDropdownInput = (
+      await screen.findAllByTestId("dropdown-input")
+    )[1];
 
-  //   expect(secondDropdownInput).toBeInTheDocument();
-  // });
+    expect(secondDropdownInput).toBeInTheDocument();
+  });
 });
 
 describe("Dropdown Component - UI Test", () => {
